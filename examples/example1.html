@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/jspsych@7.0.0"></script>
+		<script src="../dist/index.browser.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
+	</head>
+	<body></body>
+	<script>
+
+		var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+		
+		var test_trials = {
+				type: jsPsychHtmlKeyboardResponse,
+				stimulus: '<p style="font-size:48px; color:green;">BLUE</p>',
+				choices: ['r', 'g', 'b'],
+				prompt: "<p>Is the ink color (r)ed, (g)reen, or (b)lue?</p>",
+				show_button: true
+		};
+		
+
+		//---------Run the experiment---------
+		
+		jsPsych.run([test_trials]);
+
+	</script>
+</html>
