@@ -118,7 +118,7 @@ type Info = typeof info;
  * @author Josh de Leeuw
  * @see {@link https://www.jspsych.org/latest/plugins/html-keynbutton-response/ html-keynbutton-response plugin documentation on jspsych.org}
  */
-class HtmlKeyboardResponsePlugin implements JsPsychPlugin<Info> {
+class HtmlKeyAndButtonPlugin implements JsPsychPlugin<Info> {
   static info = info;
   constructor(private jsPsych: JsPsych) {}
 
@@ -315,4 +315,4 @@ class HtmlKeyboardResponsePlugin implements JsPsychPlugin<Info> {
   }
 }
 
-export default HtmlKeyboardResponsePlugin;
+export default HtmlKeyAndButtonPlugin;

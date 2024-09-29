@@ -1,5 +1,5 @@
 {
-  "name": "@jspsych/plugin-html-keynbutton-response",
+  "name": "@panwanke/jspsych-html-keynbutton-response",
   "version": "2.0.0",
   "description": "jsPsych plugin for displaying a stimulus and getting a keyboard or button response",
   "type": "module",
@@ -7,6 +7,9 @@
   "exports": {
     "import": "./dist/index.js",
     "require": "./dist/index.cjs"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "typings": "dist/index.d.ts",
   "unpkg": "dist/index.browser.min.js",
@@ -24,15 +27,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jspsych/jsPsych.git",
+    "url": "git+https://github.com/Chuan-Peng-Lab/jspsych-html-keynbutton-response.git",
     "directory": "packages/plugin-html-keynbutton-response"
   },
   "author": "Wanke Pan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jspsych/jsPsych/issues"
+    "url": "https://github.com/Chuan-Peng-Lab/jspsych-html-keynbutton-response/issues"
   },
-  "homepage": "https://www.jspsych.org/latest/plugins/html-keynbutton-response",
+  "homepage": "https://github.com/Chuan-Peng-Lab/jspsych-html-keynbutton-response",
   "peerDependencies": {
     "jspsych": ">=7.1.0"
   },
