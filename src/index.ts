@@ -125,7 +125,7 @@ class HtmlKeyAndButtonPlugin implements JsPsychPlugin<Info> {
   trial(display_element: HTMLElement, trial: TrialType<Info>) {
     // Display stimulus
     const stimulusElement = document.createElement("div");
-    stimulusElement.id = "jspsych-html-button-response-stimulus";
+    stimulusElement.id = "jspsych-html-keynbutton-response-stimulus";
     stimulusElement.innerHTML = trial.stimulus;
 
     display_element.appendChild(stimulusElement);

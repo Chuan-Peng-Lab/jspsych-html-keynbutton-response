@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://unpkg.com/jspsych@7.0.0"></script>
+		<script src="../dist/index.browser.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css">
+	</head>
+	<body></body>
+	<script>
+
+		var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+		
+		// 定义实验变量
+		let stim_design = [
+			{ ismatch: 'mismatch', target: '圆' },
+			{ ismatch: 'match', target: '圆' },
+			{ ismatch: 'mismatch', target: '方' },
+			{ ismatch: 'match', target: '方' },
+		]
+
+		class StimGenerator {
+			constructor(squareSize, circleSize) {
+				this.squareSize = squareSize;
+				this.circleSize = circleSize;
+				this.stimOptions = {
+					"圆": `<div class="w-[${this.circleSize}em] h-[${this.circleSize}em] bg-black rounded-full"></div>`,
+					"方": `<div class="w-[${this.squareSize}em] h-[${this.squareSize}em] bg-black"></div>`,
+				};
+			}
+
+			generate(target, ismatch) {
+				
+				const targetStim = this.stimOptions[target];
+				const otherOptionKey = target === '圆' ? '方' : '圆';
+				const flankerStim = ismatch === 'match' ? targetStim : this.stimOptions[otherOptionKey];
+				
+				const stim = `
+				<div class="flex flex-row justify-evenly">
+					${flankerStim}
+					${targetStim}
+					${flankerStim}
+				</div>
+				`;
+
+				return stim;
+			}
+		}
+
+		const squareSize = 1.2;
+		const circleSize = 1;
+		const stimGenerator = new StimGenerator(squareSize, circleSize)
+
+		let matching_trial = {
+			type: jsPsychHtmlKeyAndButtonPlugin,
+			stimulus: function() {
+				
+				const target = jsPsych.timelineVariable('target');
+				const ismatch = jsPsych.timelineVariable('ismatch');
+				console.log('target',target)
+				console.log('ismatch',ismatch)
+				
+				return stimGenerator.generate(target, ismatch);
+			},
+			data: {task: 'test'},
+			on_finish: function(data) {
+				const correct = data.response == 'p';
+				data.correct = correct;
+			},
+			choices: ['p', 'q']
+		};
+
+		let matching_loop = {
+			timeline: [matching_trial],
+			randomize_order: true,
+			repetitions: 2,
+			timeline_variables: stim_design,
+		}
+
+		const timeline = [
+			matching_loop,
+		];
+
+		jsPsych.run(timeline);
+
+	</script>
+</html>

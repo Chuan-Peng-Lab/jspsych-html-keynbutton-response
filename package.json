@@ -1,6 +1,6 @@
 {
   "name": "@panwanke/jspsych-html-keynbutton-response",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "jsPsych plugin for displaying a stimulus and getting a keyboard or button response",
   "type": "module",
   "main": "dist/index.cjs",
